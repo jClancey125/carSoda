@@ -6,7 +6,6 @@ import json
 
 #Defining some varibles needed in future
 login = None
-password = None
 host = None
 shIntList = None
 listLength = None
@@ -96,6 +95,12 @@ print(speedDuplex)
 print("\nCurrent Input Ouput traffic of interface below: \n")
 print(trafficIN)
 print(trafficOUT)
+
+
+searchIP = input ("Please enter IP you wish to lookup: ")
+searchedIp = requests.get("http://ip-api.com/json/" + searchIP + "?fields=status,message,country,countryCode,region,regionName,city,zip,isp,org,as,query")
+print(searchedIp.text)
+
 input('\nPress Enter to move onto MAC address-table\n')
 
 #send show mac address command and display output
@@ -112,6 +117,10 @@ searchMAC = input("Please input MAC for OUI lookup: ")
 ouiResult = requests.get("https://api.maclookup.app/v2/macs/" + searchMAC + "/company/name")
 print(ouiResult)
 print(ouiResult.text)
+
+searchIP = input ("Please enter IP you wish to lookup: ")
+searchedIp = requests.get("http://ip-api.com/json/" + searchIP + "?fields=status,message,country,countryCode,region,regionName,city,zip,isp,org,as,query")
+print(searchedIp.text)
 
 input('Press Enter to exit')
 
