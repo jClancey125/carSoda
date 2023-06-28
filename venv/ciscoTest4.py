@@ -76,7 +76,7 @@ command = routerJuan.send_command("show interface desc")
 print(command)
 
 #asking user what interface they would like to check
-search = input("Which interface would you like to check?: ")
+search = input("\nWhich interface would you like to check?: \n")
 
 #creates string that will end up being show int with the users input added to complete the command
 finalSearch = "show int " + search
@@ -97,7 +97,7 @@ print(trafficIN)
 print(trafficOUT)
 
 
-searchIP = input ("Please enter IP you wish to lookup: ")
+searchIP = input ("\nPlease enter IP you wish to lookup: \n")
 searchedIp = requests.get("http://ip-api.com/json/" + searchIP + "?fields=status,message,country,countryCode,region,regionName,city,zip,isp,org,as,query")
 print(searchedIp.text)
 
@@ -113,14 +113,11 @@ arp = routerJuan.send_command("show arp")
 print(arp)
 
 #Reachout to API for OUI lookup creates ouiResult variable using MAC defined by user
-searchMAC = input("Please input MAC for OUI lookup: ")
+searchMAC = input("\nPlease input MAC for OUI lookup: \n")
 ouiResult = requests.get("https://api.maclookup.app/v2/macs/" + searchMAC + "/company/name")
 print(ouiResult)
 print(ouiResult.text)
 
-searchIP = input ("Please enter IP you wish to lookup: ")
-searchedIp = requests.get("http://ip-api.com/json/" + searchIP + "?fields=status,message,country,countryCode,region,regionName,city,zip,isp,org,as,query")
-print(searchedIp.text)
 
 input('Press Enter to exit')
 
