@@ -16,6 +16,7 @@ trafficIN = None
 trafficOUT = None
 macAddress = None
 ouiResult = None
+searchMAC = None
 
 
 
@@ -97,26 +98,49 @@ print(trafficIN)
 print(trafficOUT)
 
 
-searchIP = input ("\nPlease enter IP you wish to lookup: \n")
-searchedIp = requests.get("http://ip-api.com/json/" + searchIP + "?fields=status,message,country,countryCode,region,regionName,city,zip,isp,org,as,query")
-print(searchedIp.text)
+checkMAC = input('\nPress Enter for whole mac table dump \nOr Type 1 for specific interface\n')
 
-input('\nPress Enter to move onto MAC address-table\n')
+if checkMAC == '1':
+    tempMAC = input('\nPlease enter interface you wish to check MAC addresses for: \n')
+    command = routerJuan.send_command("show mac address-table int " + tempMAC)
+    print(command)
 
-#send show mac address command and display output
-macAddress = routerJuan.send_command("show mac address-table")
-print(macAddress)
+else:
+    # send show mac address command and display output
+    macAddress = routerJuan.send_command("show mac address-table")
+    print(macAddress)
+
+
+
 
 input('\nPress Enter to move onto ARP table\n')
 #send show ARP command and display output
 arp = routerJuan.send_command("show arp")
 print(arp)
 
-#Reachout to API for OUI lookup creates ouiResult variable using MAC defined by user
-searchMAC = input("\nPlease input MAC for OUI lookup: \n")
-ouiResult = requests.get("https://api.maclookup.app/v2/macs/" + searchMAC + "/company/name")
-print(ouiResult)
-print(ouiResult.text)
+
+
+searchTest = input("\nPlease input 1 if a MAC lookup is needed, otherwise press enter \n")
+
+if searchTest == '1':
+    # Reachout to API for OUI lookup creates ouiResult variable using MAC defined by user
+    searchMAC = input("\nPlease input MAC for OUI lookup: \n")
+    ouiResult = requests.get("https://api.maclookup.app/v2/macs/" + searchMAC + "/company/name")
+    print(ouiResult)
+    print(ouiResult.text)
+
+
+
+ipTest = input("\n Please input 1 if you'd like to use IP Lookup API Otherwise press enter \n")
+
+if ipTest == '1':
+    # Reachout to API for OUI lookup creates ouiResult variable using MAC defined by user
+    searchIP = input("\nPlease input Ip for lookup: \n")
+    ouiResult = requests.get("http://ip-api.com/json/" + searchIP + "?fields=status,message,country,regionName,city,zip,isp,org,as,query")
+    print(ouiResult)
+    print(ouiResult.text)
+
+
 
 
 input('Press Enter to exit')
