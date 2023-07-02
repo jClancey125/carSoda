@@ -40,7 +40,7 @@ def CiscoTest():
    # Creating variable command, and sending its value to the cisco routing using the connecthandler object we just made
    command = routerJuan.send_command("show  arp")
 
-   return render_template('Ciscoresult.html', command = command)
+   return render_template('ciscoResult.html', command = command)
 
 
 
