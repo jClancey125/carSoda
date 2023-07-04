@@ -58,7 +58,3 @@ def CiscoTest():
 #runs program 0.0.0.0 sets it to use web interface to run instead of local host
 if __name__ == '__main__':
    app.run('0.0.0.0', debug = True)
-
-
-
-
