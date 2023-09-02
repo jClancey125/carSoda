@@ -59,7 +59,7 @@ const Home = () => {
         
           return ( <h1>
               Cisco IOS integration PoC 
-              requires backend to be running
+              
           </h1>
           );
         
