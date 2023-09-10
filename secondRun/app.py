@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource, reqparse
-from flask_cors import CORS #comment this on deployment
+from flask_cors import CORS #  comment this on deployment
 from api.HelloApiHandler import HelloApiHandler
 from netmiko import ConnectHandler
 from flask_limiter import Limiter
