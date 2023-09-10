@@ -1,0 +1,986 @@
+# npm resolution error report
+
+2023-08-16T04:38:55.554Z
+
+While resolving: @material-ui/core@4.12.4
+Found: react@18.2.0
+node_modules/react
+  react@"^18.2.0" from the root project
+  peer react@"^18.0.0" from @testing-library/react@13.4.0
+  node_modules/@testing-library/react
+    @testing-library/react@"^13.4.0" from the root project
+  peer react@"^18.2.0" from react-dom@18.2.0
+  node_modules/react-dom
+    react-dom@"^18.2.0" from the root project
+    peer react-dom@"^18.0.0" from @testing-library/react@13.4.0
+    node_modules/@testing-library/react
+      @testing-library/react@"^13.4.0" from the root project
+    peer react-dom@">=16.8" from react-router-dom@6.14.1
+    node_modules/react-router-dom
+      react-router-dom@"^6.14.1" from the root project
+    peer react-dom@">=16.6.0" from react-transition-group@4.4.5
+    node_modules/react-transition-group
+      react-transition-group@"^4.4.0" from @material-ui/core@4.12.4
+      node_modules/@material-ui/core
+        @material-ui/core@"^4.12.4" from the root project
+        peer @material-ui/core@"^4.0.0" from @material-ui/icons@4.11.3
+        node_modules/@material-ui/icons
+          @material-ui/icons@"^4.11.3" from the root project
+    peer react-dom@">= 16.8.0" from styled-components@6.0.3
+    node_modules/styled-components
+      styled-components@"^6.0.3" from the root project
+  peer react@"^16.8.0 || ^17 || ^18" from react-hook-form@7.45.1
+  node_modules/react-hook-form
+    react-hook-form@"^7.45.1" from the root project
+  peer react@"*" from react-icons@4.10.1
+  node_modules/react-icons
+    react-icons@"^4.10.1" from the root project
+  peer react@">=16.8" from react-router@6.14.1
+  node_modules/react-router
+    react-router@"6.14.1" from react-router-dom@6.14.1
+    node_modules/react-router-dom
+      react-router-dom@"^6.14.1" from the root project
+  peer react@">=16.8" from react-router-dom@6.14.1
+  node_modules/react-router-dom
+    react-router-dom@"^6.14.1" from the root project
+  peer react@">= 16" from react-scripts@5.0.1
+  node_modules/react-scripts
+    react-scripts@"5.0.1" from the root project
+  peer react@">=16.6.0" from react-transition-group@4.4.5
+  node_modules/react-transition-group
+    react-transition-group@"^4.4.0" from @material-ui/core@4.12.4
+    node_modules/@material-ui/core
+      @material-ui/core@"^4.12.4" from the root project
+      peer @material-ui/core@"^4.0.0" from @material-ui/icons@4.11.3
+      node_modules/@material-ui/icons
+        @material-ui/icons@"^4.11.3" from the root project
+  peer react@">= 16.8.0" from styled-components@6.0.3
+  node_modules/styled-components
+    styled-components@"^6.0.3" from the root project
+
+Could not resolve dependency:
+peer react@"^16.8.0 || ^17.0.0" from @material-ui/core@4.12.4
+node_modules/@material-ui/core
+  @material-ui/core@"^4.12.4" from the root project
+  peer @material-ui/core@"^4.0.0" from @material-ui/icons@4.11.3
+  node_modules/@material-ui/icons
+    @material-ui/icons@"^4.11.3" from the root project
+
+Conflicting peer dependency: react@17.0.2
+node_modules/react
+  peer react@"^16.8.0 || ^17.0.0" from @material-ui/core@4.12.4
+  node_modules/@material-ui/core
+    @material-ui/core@"^4.12.4" from the root project
+    peer @material-ui/core@"^4.0.0" from @material-ui/icons@4.11.3
+    node_modules/@material-ui/icons
+      @material-ui/icons@"^4.11.3" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force, or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.
+
+Raw JSON explanation object:
+
+{
+  "code": "ERESOLVE",
+  "edge": {
+    "type": "peer",
+    "name": "react",
+    "spec": "^16.8.0 || ^17.0.0",
+    "error": "INVALID",
+    "from": {
+      "name": "@material-ui/core",
+      "version": "4.12.4",
+      "location": "node_modules/@material-ui/core",
+      "isWorkspace": false,
+      "dependents": [
+        {
+          "type": "prod",
+          "name": "@material-ui/core",
+          "spec": "^4.12.4",
+          "from": {
+            "location": "/root/secondRun/frontend"
+          }
+        },
+        {
+          "type": "peer",
+          "name": "@material-ui/core",
+          "spec": "^4.0.0",
+          "from": {
+            "name": "@material-ui/icons",
+            "version": "4.11.3",
+            "location": "node_modules/@material-ui/icons",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "@material-ui/icons",
+                "spec": "^4.11.3",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "dep": {
+    "name": "react",
+    "version": "17.0.2",
+    "whileInstalling": {
+      "name": "@material-ui/core",
+      "version": "4.12.4",
+      "path": "/root/secondRun/frontend/node_modules/@material-ui/core"
+    },
+    "location": "node_modules/react",
+    "isWorkspace": false,
+    "dependents": [
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": "^16.8.0 || ^17.0.0",
+        "error": "INVALID",
+        "from": {
+          "name": "@material-ui/core",
+          "version": "4.12.4",
+          "location": "node_modules/@material-ui/core",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "@material-ui/core",
+              "spec": "^4.12.4",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            },
+            {
+              "type": "peer",
+              "name": "@material-ui/core",
+              "spec": "^4.0.0",
+              "from": {
+                "name": "@material-ui/icons",
+                "version": "4.11.3",
+                "location": "node_modules/@material-ui/icons",
+                "isWorkspace": false,
+                "dependents": [
+                  {
+                    "type": "prod",
+                    "name": "@material-ui/icons",
+                    "spec": "^4.11.3",
+                    "from": {
+                      "location": "/root/secondRun/frontend"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "current": {
+    "name": "react",
+    "version": "18.2.0",
+    "location": "node_modules/react",
+    "isWorkspace": false,
+    "dependents": [
+      {
+        "type": "prod",
+        "name": "react",
+        "spec": "^18.2.0",
+        "from": {
+          "location": "/root/secondRun/frontend"
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": "^18.0.0",
+        "from": {
+          "name": "@testing-library/react",
+          "version": "13.4.0",
+          "location": "node_modules/@testing-library/react",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "@testing-library/react",
+              "spec": "^13.4.0",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": "^18.2.0",
+        "from": {
+          "name": "react-dom",
+          "version": "18.2.0",
+          "location": "node_modules/react-dom",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "react-dom",
+              "spec": "^18.2.0",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            },
+            {
+              "type": "peer",
+              "name": "react-dom",
+              "spec": "^18.0.0",
+              "from": {
+                "name": "@testing-library/react",
+                "version": "13.4.0",
+                "location": "node_modules/@testing-library/react",
+                "isWorkspace": false,
+                "dependents": [
+                  {
+                    "type": "prod",
+                    "name": "@testing-library/react",
+                    "spec": "^13.4.0",
+                    "from": {
+                      "location": "/root/secondRun/frontend"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "peer",
+              "name": "react-dom",
+              "spec": ">=16.8",
+              "from": {
+                "name": "react-router-dom",
+                "version": "6.14.1",
+                "location": "node_modules/react-router-dom",
+                "isWorkspace": false,
+                "dependents": [
+                  {
+                    "type": "prod",
+                    "name": "react-router-dom",
+                    "spec": "^6.14.1",
+                    "from": {
+                      "location": "/root/secondRun/frontend"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "peer",
+              "name": "react-dom",
+              "spec": ">=16.6.0",
+              "from": {
+                "name": "react-transition-group",
+                "version": "4.4.5",
+                "location": "node_modules/react-transition-group",
+                "isWorkspace": false,
+                "dependents": [
+                  {
+                    "type": "prod",
+                    "name": "react-transition-group",
+                    "spec": "^4.4.0",
+                    "from": {
+                      "name": "@material-ui/core",
+                      "version": "4.12.4",
+                      "location": "node_modules/@material-ui/core",
+                      "isWorkspace": false,
+                      "dependents": [
+                        {
+                          "type": "prod",
+                          "name": "@material-ui/core",
+                          "spec": "^4.12.4",
+                          "from": {
+                            "location": "/root/secondRun/frontend"
+                          }
+                        },
+                        {
+                          "type": "peer",
+                          "name": "@material-ui/core",
+                          "spec": "^4.0.0",
+                          "from": {
+                            "name": "@material-ui/icons",
+                            "version": "4.11.3",
+                            "location": "node_modules/@material-ui/icons",
+                            "isWorkspace": false,
+                            "dependents": [
+                              {
+                                "type": "prod",
+                                "name": "@material-ui/icons",
+                                "spec": "^4.11.3",
+                                "from": {
+                                  "location": "/root/secondRun/frontend"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "peer",
+              "name": "react-dom",
+              "spec": ">= 16.8.0",
+              "from": {
+                "name": "styled-components",
+                "version": "6.0.3",
+                "location": "node_modules/styled-components",
+                "isWorkspace": false,
+                "dependents": [
+                  {
+                    "type": "prod",
+                    "name": "styled-components",
+                    "spec": "^6.0.3",
+                    "from": {
+                      "location": "/root/secondRun/frontend"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": "^16.8.0 || ^17 || ^18",
+        "from": {
+          "name": "react-hook-form",
+          "version": "7.45.1",
+          "location": "node_modules/react-hook-form",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "react-hook-form",
+              "spec": "^7.45.1",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": "*",
+        "from": {
+          "name": "react-icons",
+          "version": "4.10.1",
+          "location": "node_modules/react-icons",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "react-icons",
+              "spec": "^4.10.1",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": ">=16.8",
+        "from": {
+          "name": "react-router",
+          "version": "6.14.1",
+          "location": "node_modules/react-router",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "react-router",
+              "spec": "6.14.1",
+              "from": {
+                "name": "react-router-dom",
+                "version": "6.14.1",
+                "location": "node_modules/react-router-dom",
+                "isWorkspace": false,
+                "dependents": [
+                  {
+                    "type": "prod",
+                    "name": "react-router-dom",
+                    "spec": "^6.14.1",
+                    "from": {
+                      "location": "/root/secondRun/frontend"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": ">=16.8",
+        "from": {
+          "name": "react-router-dom",
+          "version": "6.14.1",
+          "location": "node_modules/react-router-dom",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "react-router-dom",
+              "spec": "^6.14.1",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": ">= 16",
+        "from": {
+          "name": "react-scripts",
+          "version": "5.0.1",
+          "location": "node_modules/react-scripts",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "react-scripts",
+              "spec": "5.0.1",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": ">=16.6.0",
+        "from": {
+          "name": "react-transition-group",
+          "version": "4.4.5",
+          "location": "node_modules/react-transition-group",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "react-transition-group",
+              "spec": "^4.4.0",
+              "from": {
+                "name": "@material-ui/core",
+                "version": "4.12.4",
+                "location": "node_modules/@material-ui/core",
+                "isWorkspace": false,
+                "dependents": [
+                  {
+                    "type": "prod",
+                    "name": "@material-ui/core",
+                    "spec": "^4.12.4",
+                    "from": {
+                      "location": "/root/secondRun/frontend"
+                    }
+                  },
+                  {
+                    "type": "peer",
+                    "name": "@material-ui/core",
+                    "spec": "^4.0.0",
+                    "from": {
+                      "name": "@material-ui/icons",
+                      "version": "4.11.3",
+                      "location": "node_modules/@material-ui/icons",
+                      "isWorkspace": false,
+                      "dependents": [
+                        {
+                          "type": "prod",
+                          "name": "@material-ui/icons",
+                          "spec": "^4.11.3",
+                          "from": {
+                            "location": "/root/secondRun/frontend"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "peer",
+        "name": "react",
+        "spec": ">= 16.8.0",
+        "from": {
+          "name": "styled-components",
+          "version": "6.0.3",
+          "location": "node_modules/styled-components",
+          "isWorkspace": false,
+          "dependents": [
+            {
+              "type": "prod",
+              "name": "styled-components",
+              "spec": "^6.0.3",
+              "from": {
+                "location": "/root/secondRun/frontend"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "peerConflict": {
+    "current": {
+      "name": "react",
+      "version": "18.2.0",
+      "location": "node_modules/react",
+      "isWorkspace": false,
+      "dependents": [
+        {
+          "type": "prod",
+          "name": "react",
+          "spec": "^18.2.0",
+          "from": {
+            "location": "/root/secondRun/frontend"
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": "^18.0.0",
+          "from": {
+            "name": "@testing-library/react",
+            "version": "13.4.0",
+            "location": "node_modules/@testing-library/react",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "@testing-library/react",
+                "spec": "^13.4.0",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": "^18.2.0",
+          "from": {
+            "name": "react-dom",
+            "version": "18.2.0",
+            "location": "node_modules/react-dom",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "react-dom",
+                "spec": "^18.2.0",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              },
+              {
+                "type": "peer",
+                "name": "react-dom",
+                "spec": "^18.0.0",
+                "from": {
+                  "name": "@testing-library/react",
+                  "version": "13.4.0",
+                  "location": "node_modules/@testing-library/react",
+                  "isWorkspace": false,
+                  "dependents": [
+                    {
+                      "type": "prod",
+                      "name": "@testing-library/react",
+                      "spec": "^13.4.0",
+                      "from": {
+                        "location": "/root/secondRun/frontend"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "peer",
+                "name": "react-dom",
+                "spec": ">=16.8",
+                "from": {
+                  "name": "react-router-dom",
+                  "version": "6.14.1",
+                  "location": "node_modules/react-router-dom",
+                  "isWorkspace": false,
+                  "dependents": [
+                    {
+                      "type": "prod",
+                      "name": "react-router-dom",
+                      "spec": "^6.14.1",
+                      "from": {
+                        "location": "/root/secondRun/frontend"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "peer",
+                "name": "react-dom",
+                "spec": ">=16.6.0",
+                "from": {
+                  "name": "react-transition-group",
+                  "version": "4.4.5",
+                  "location": "node_modules/react-transition-group",
+                  "isWorkspace": false,
+                  "dependents": [
+                    {
+                      "type": "prod",
+                      "name": "react-transition-group",
+                      "spec": "^4.4.0",
+                      "from": {
+                        "name": "@material-ui/core",
+                        "version": "4.12.4",
+                        "location": "node_modules/@material-ui/core",
+                        "isWorkspace": false,
+                        "dependents": [
+                          {
+                            "type": "prod",
+                            "name": "@material-ui/core",
+                            "spec": "^4.12.4",
+                            "from": {
+                              "location": "/root/secondRun/frontend"
+                            }
+                          },
+                          {
+                            "type": "peer",
+                            "name": "@material-ui/core",
+                            "spec": "^4.0.0",
+                            "from": {
+                              "name": "@material-ui/icons",
+                              "version": "4.11.3",
+                              "location": "node_modules/@material-ui/icons",
+                              "isWorkspace": false,
+                              "dependents": [
+                                {
+                                  "type": "prod",
+                                  "name": "@material-ui/icons",
+                                  "spec": "^4.11.3",
+                                  "from": {
+                                    "location": "/root/secondRun/frontend"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "peer",
+                "name": "react-dom",
+                "spec": ">= 16.8.0",
+                "from": {
+                  "name": "styled-components",
+                  "version": "6.0.3",
+                  "location": "node_modules/styled-components",
+                  "isWorkspace": false,
+                  "dependents": [
+                    {
+                      "type": "prod",
+                      "name": "styled-components",
+                      "spec": "^6.0.3",
+                      "from": {
+                        "location": "/root/secondRun/frontend"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": "^16.8.0 || ^17 || ^18",
+          "from": {
+            "name": "react-hook-form",
+            "version": "7.45.1",
+            "location": "node_modules/react-hook-form",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "react-hook-form",
+                "spec": "^7.45.1",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": "*",
+          "from": {
+            "name": "react-icons",
+            "version": "4.10.1",
+            "location": "node_modules/react-icons",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "react-icons",
+                "spec": "^4.10.1",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": ">=16.8",
+          "from": {
+            "name": "react-router",
+            "version": "6.14.1",
+            "location": "node_modules/react-router",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "react-router",
+                "spec": "6.14.1",
+                "from": {
+                  "name": "react-router-dom",
+                  "version": "6.14.1",
+                  "location": "node_modules/react-router-dom",
+                  "isWorkspace": false,
+                  "dependents": [
+                    {
+                      "type": "prod",
+                      "name": "react-router-dom",
+                      "spec": "^6.14.1",
+                      "from": {
+                        "location": "/root/secondRun/frontend"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": ">=16.8",
+          "from": {
+            "name": "react-router-dom",
+            "version": "6.14.1",
+            "location": "node_modules/react-router-dom",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "react-router-dom",
+                "spec": "^6.14.1",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": ">= 16",
+          "from": {
+            "name": "react-scripts",
+            "version": "5.0.1",
+            "location": "node_modules/react-scripts",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "react-scripts",
+                "spec": "5.0.1",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": ">=16.6.0",
+          "from": {
+            "name": "react-transition-group",
+            "version": "4.4.5",
+            "location": "node_modules/react-transition-group",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "react-transition-group",
+                "spec": "^4.4.0",
+                "from": {
+                  "name": "@material-ui/core",
+                  "version": "4.12.4",
+                  "location": "node_modules/@material-ui/core",
+                  "isWorkspace": false,
+                  "dependents": [
+                    {
+                      "type": "prod",
+                      "name": "@material-ui/core",
+                      "spec": "^4.12.4",
+                      "from": {
+                        "location": "/root/secondRun/frontend"
+                      }
+                    },
+                    {
+                      "type": "peer",
+                      "name": "@material-ui/core",
+                      "spec": "^4.0.0",
+                      "from": {
+                        "name": "@material-ui/icons",
+                        "version": "4.11.3",
+                        "location": "node_modules/@material-ui/icons",
+                        "isWorkspace": false,
+                        "dependents": [
+                          {
+                            "type": "prod",
+                            "name": "@material-ui/icons",
+                            "spec": "^4.11.3",
+                            "from": {
+                              "location": "/root/secondRun/frontend"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": ">= 16.8.0",
+          "from": {
+            "name": "styled-components",
+            "version": "6.0.3",
+            "location": "node_modules/styled-components",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "styled-components",
+                "spec": "^6.0.3",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "peer": {
+      "name": "react",
+      "version": "17.0.2",
+      "whileInstalling": {
+        "name": "@material-ui/core",
+        "version": "4.12.4",
+        "path": "/root/secondRun/frontend/node_modules/@material-ui/core"
+      },
+      "location": "node_modules/react",
+      "isWorkspace": false,
+      "dependents": [
+        {
+          "type": "peer",
+          "name": "react",
+          "spec": "^16.8.0 || ^17.0.0",
+          "error": "INVALID",
+          "from": {
+            "name": "@material-ui/core",
+            "version": "4.12.4",
+            "location": "node_modules/@material-ui/core",
+            "isWorkspace": false,
+            "dependents": [
+              {
+                "type": "prod",
+                "name": "@material-ui/core",
+                "spec": "^4.12.4",
+                "from": {
+                  "location": "/root/secondRun/frontend"
+                }
+              },
+              {
+                "type": "peer",
+                "name": "@material-ui/core",
+                "spec": "^4.0.0",
+                "from": {
+                  "name": "@material-ui/icons",
+                  "version": "4.11.3",
+                  "location": "node_modules/@material-ui/icons",
+                  "isWorkspace": false,
+                  "dependents": [
+                    {
+                      "type": "prod",
+                      "name": "@material-ui/icons",
+                      "spec": "^4.11.3",
+                      "from": {
+                        "location": "/root/secondRun/frontend"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "strictPeerDeps": false,
+  "force": false,
+  "isMine": true
+}
