@@ -16,7 +16,7 @@ const Home = () => {
       const [user, setUser] = useState({
         user: 'Blon',
         host: '192.68.419.86',
-        pass: 'uhhPassword'
+        pass: 'Bust'
   })
 
       function handleClick(){
