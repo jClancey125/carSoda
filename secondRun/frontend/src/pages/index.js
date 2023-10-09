@@ -10,29 +10,41 @@ const Home = () => {
     const [isShow, setIsShow] = useState(false)
     var newTest 
     const [getInt, setInt] = useState({})
+    ;
 
     function LoginForm(){
-      const [User, setUser] = useState({
+      const [user, setUser] = useState({
         user: 'Blon',
         host: '192.68.419.86',
         pass: 'uhhPassword'
-  });
+  })
+
+      function handleClick(){
+        axios({
+          method: "POST",
+          url:"http://137.184.194.3:5000/",
+          data:{
+            userName : user.user,
+            password : user.pass,
+            host : user.host
+          }
+        })}
       
       function changeUser(e){
         setUser({
-          ...User, user: e.target.value
+          ...user, user: e.target.value
         });
       }
       
       function changeHost(e){
         setUser({
-          ...User, host: e.target.value
+          ...user, host: e.target.value
         });
       }
   
       function changePass(e){
         setUser({
-          ...User, pass: e.target.value
+          ...user, pass: e.target.value
         })
       }
 
@@ -41,31 +53,29 @@ const Home = () => {
         <label>
           Username:
         <input
-          value={User.user}
+          value={user.user}
           onChange={changeUser}
         />
         </label>
         <label>
           Password:
         <input
-          value={User.pass}
+          value={user.pass}
           onChange={changePass}
         />
         </label>
         <label>
           Host:
         <input
-          value={User.host}
+          value={user.host}
           onChange={changeHost}
         />
         </label>
         <p>
-          test Below:
-          {User.user}
-          {User.pass}
-          {User.host}
+        <button onClick = {handleClick}>
+          Login
+        </button>
         </p>
-        
         
         </>
       )
@@ -81,7 +91,7 @@ const Home = () => {
     return (
       <div>
         <Heading/>
-        <TestButton message={getMessage.data} buttonMessage= {'show ARP'}/>
+        <GetButton message={getMessage.data} buttonMessage= {'show interface description'}/>
         <LoginForm/>
         </div>
         
@@ -110,12 +120,40 @@ const Home = () => {
 
 
 
+
+    function PostButton({buttonMessage}){
+      function handleClick1(){
+        axios({
+          method: "POST",
+          url:"http://137.184.194.3:5000/",
+          data:{
+            userName : LoginForm.user.user,
+            password : LoginForm.user.pass,
+            host : LoginForm.user.host
+          }
+        })
+    }
+    return (
+      <div>
+        <button onClick = {handleClick1}>
+          {(buttonMessage)}
+        </button>
+
+
+
+      </div>
+
+
+
+
+      )
+  }
    
 
 
 
 
-    function TestButton({message, buttonMessage}){
+    function GetButton({message, buttonMessage}){
         const [count, setCount] = useState(0);
         //testJson()
         function handleClick(){
@@ -145,7 +183,7 @@ const Home = () => {
         return (
           //<button>I'm just a button in a human world</button>
           <div><button onClick = {handleClick}>
-            {(buttonMessage)} is {String(isShow)}
+            {(buttonMessage)}
     
     
           </button>

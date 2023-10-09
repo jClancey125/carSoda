@@ -15,18 +15,30 @@ limiter = Limiter(get_remote_address, app=app)
 CORS(app)
 
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", 'POST'])
 @limiter.limit("2/minute")
-def get():
-      routerJuan = ConnectHandler(
-      device_type="cisco_ios",
-      host="73.60.76.61",
-      username="assHole",
-      password="assHole",
-   )
-      command = routerJuan.send_command("show int des")
 
-      return jsonify(command)
+
+
+def login():
+    global userName
+    global password
+    global host
+    if request.method == 'POST':
+        userName = request.json.get('userName')
+        password = request.json.get('password')
+        host = request.json.get('host')
+        return jsonify(userName)
+
+    else:
+          routerJuan = ConnectHandler(
+              device_type="cisco_ios",
+              host=host,
+              username=userName,
+              password=password,
+          )
+          command = routerJuan.send_command("show int des")
+          return jsonify(command)
 
 
 if __name__ == '__main__':
