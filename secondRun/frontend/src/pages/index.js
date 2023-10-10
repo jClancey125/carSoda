@@ -1,7 +1,16 @@
+//import * as React from 'react';
+//import './Index.css';
 import React, { useEffect, useState, Component } from 'react';
 import axios from 'axios'
+import {Button, TextField } from '@mui/material';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
+    
 
  
 const Home = () => {
@@ -11,6 +20,18 @@ const Home = () => {
     var newTest 
     const [getInt, setInt] = useState({})
     ;
+
+
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: '##b5b5b5', // your primary color
+        },
+        secondary: {
+          main: '#00ff00', // your secondary color
+        },
+      },
+    });
 
     function LoginForm(){
       const [user, setUser] = useState({
@@ -49,14 +70,13 @@ const Home = () => {
       }
 
       return(
-        <>
-        <label>
-          Username:
-        <input
+        <>     
+        <TextField
+        sx={{  color: 'red'  }}
+          id="outlined-basic" label = "Username" variant="filled" color="secondary" 
           value={user.user}
           onChange={changeUser}
         />
-        </label>
         <label>
           Password:
         <input
@@ -72,9 +92,10 @@ const Home = () => {
         />
         </label>
         <p>
-        <button onClick = {handleClick}>
+        <Button variant="outlined" onClick = {handleClick}>
           Login
-        </button>
+        </Button>
+        
         </p>
         
         </>
@@ -89,11 +110,14 @@ const Home = () => {
     
 
     return (
+      
       <div>
+        <ThemeProvider theme={theme}>
         <Heading/>
         <GetButton message={getMessage.data} buttonMessage= {'show interface description'}/>
         <LoginForm/>
-        </div>
+        </ThemeProvider>
+      </div>
         
     );
 
@@ -108,19 +132,12 @@ const Home = () => {
 
     
 
-    function testJson(){
-
-      const newTests = getMessage.data
-      newTest = newTests
-
-
-    }
 
 
 
 
 
-
+// Not implemented nor working
     function PostButton({buttonMessage}){
       function handleClick1(){
         axios({
@@ -138,14 +155,7 @@ const Home = () => {
         <button onClick = {handleClick1}>
           {(buttonMessage)}
         </button>
-
-
-
       </div>
-
-
-
-
       )
   }
    
@@ -155,7 +165,6 @@ const Home = () => {
 
     function GetButton({message, buttonMessage}){
         const [count, setCount] = useState(0);
-        //testJson()
         function handleClick(){
             axios.get('http://137.184.194.3:5000/').then(response => {
     
