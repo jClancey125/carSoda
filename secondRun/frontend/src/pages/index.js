@@ -2,24 +2,30 @@
 //import './Index.css';
 import React, { useEffect, useState, Component } from 'react';
 import axios from 'axios'
-import {Button, TextField } from '@mui/material';
+import {Button, TextField, Box } from '@mui/material';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { BrowserRouter as Router, Routes, Route }
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation }
     from 'react-router-dom';
+
+
     
 
  
-const Home = () => {
+const Home = (props) => {
     const [getMessage, setGetMessage] = useState({})
     const [getOldMessage, setOldGMessage] = useState({})
+    const [getSingleMessage, setSingleGMessage] = useState({})
     const [isShow, setIsShow] = useState(false)
-    var newTest 
+    const history = useNavigate();
     const [getInt, setInt] = useState({})
-    ;
+    const location = useLocation();
+    const mainUser = location.state; 
+    
+    
 
 
     const theme = createTheme({
@@ -34,71 +40,84 @@ const Home = () => {
     });
 
     function LoginForm(){
+      
       const [user, setUser] = useState({
         user: 'Blon',
-        host: '192.68.419.86',
-        pass: 'Bust'
+        host: '73.60.76.61',
+        pass: 'Bust',
+        command: 'test'
   })
 
+      /*function handleClickTest(){
+        axios({
+          method: "GET",
+          url:"http://137.184.194.3:5000/profile",
+          headers: {
+            Authorization: 'Bearer ' + props.token
+          }
+        })
+        .then((response) => {
+          const res =response.data
+          res.access_token && props.setToken(res.access_token)
+          setProfileData(({
+            profile_name: res.name,
+            about_me: res.about}))
+        }).catch((error) => {
+          if (error.response) {
+            console.log(error.response)
+            console.log(error.response.status)
+            console.log(error.response.headers)
+            }
+        })}*/
+  
       function handleClick(){
         axios({
           method: "POST",
-          url:"http://137.184.194.3:5000/",
-          data:{
-            userName : user.user,
-            password : user.pass,
-            host : user.host
+          url:"http://137.184.194.3:5000/singleCommand",
+          headers: {
+            Authorization: 'Bearer ' + props.token 
+          },
+          data: {
+            command : user.command
           }
+        }).then(response => {
+
+          if(response.status === 200){
+            console.log("SUCCESS", response)
+            setSingleGMessage(response)
+          }
+          else{
+            if(setOldGMessage){
+              setGetMessage(setOldGMessage)
+            }            
+          }         
+        }).catch(error => {
+          console.log(error)                          
         })}
       
-      function changeUser(e){
+
+
+      function changeCommand(e){
         setUser({
-          ...user, user: e.target.value
-        });
-      }
-      
-      function changeHost(e){
-        setUser({
-          ...user, host: e.target.value
-        });
-      }
-  
-      function changePass(e){
-        setUser({
-          ...user, pass: e.target.value
+          ...user, command: e.target.value
         })
       }
 
       return(
+        <div>
         <>     
         <TextField
-        sx={{  color: 'red'  }}
-          id="outlined-basic" label = "Username" variant="filled" color="secondary" 
-          value={user.user}
-          onChange={changeUser}
+          sx={{ p: 2 }}
+          id="command" label = "Desired Command" variant="filled" color="secondary" 
+          value={user.command}
+          onChange={changeCommand}
         />
-        <label>
-          Password:
-        <input
-          value={user.pass}
-          onChange={changePass}
-        />
-        </label>
-        <label>
-          Host:
-        <input
-          value={user.host}
-          onChange={changeHost}
-        />
-        </label>
         <p>
-        <Button variant="outlined" onClick = {handleClick}>
-          Login
-        </Button>
         
-        </p>
-        
+       
+        </p>        
         </>
+        </div>
       )
     }
     
@@ -113,9 +132,51 @@ const Home = () => {
       
       <div>
         <ThemeProvider theme={theme}>
+        
         <Heading/>
-        <GetButton message={getMessage.data} buttonMessage= {'show interface description'}/>
-        <LoginForm/>
+    
+        <GetButtonOld message={getSingleMessage.data} buttonMessage= {'Send Command'}/>
+        <GetButton 
+            buttonMessages={'ShowARP'} buttonLabel={"Show ARP"}
+            sx={{ p: 2 }}
+            />
+        <Box
+        sx={{
+          width: 100,
+          height: 450,
+          borderRadius: 1,
+          
+        }}
+        
+      />
+
+        
+        
+            
+            
+
+            To be implemented below:
+
+
+            
+
+            <PostButton 
+            buttonLabel={'Show specific interface'} buttonMessages={'ShowInt'}
+            sx={{ p: 2 }}
+            />
+
+            <GetButton 
+            message={'to be implemented'} buttonMessage={'Show Interfaces'}
+            sx={{ p: 2 }}
+            />
+            
+
+            <GetButton 
+            message={'to be implemented'} buttonMessage={'Show Interface IP Brief'}
+            sx={{ p: 2 }}
+            />
+
+        
         </ThemeProvider>
       </div>
         
@@ -123,11 +184,23 @@ const Home = () => {
 
 
     function Heading() {
-        
+        if(mainUser === undefined || mainUser === null)
+        {
           return ( <h1>
-              Cisco IOS integration PoC 
-          </h1>
-          );
+            Single command to IOS device {LoginForm.user}
+        </h1>
+        );
+          
+        }
+        else
+        {
+          return ( <h1>
+            Single command to IOS device {mainUser.user}
+        </h1>
+        );
+
+        }
+        
     }
 
     
@@ -137,65 +210,207 @@ const Home = () => {
 
 
 
-// Not implemented nor working
-    function PostButton({buttonMessage}){
-      function handleClick1(){
-        axios({
-          method: "POST",
-          url:"http://137.184.194.3:5000/",
-          data:{
-            userName : LoginForm.user.user,
-            password : LoginForm.user.pass,
-            host : LoginForm.user.host
+
+/* Need to figure out logic to use same button on different API calls don't know if issue with appending buttonMessage varible
+to end of API call*/
+
+
+function GetButton({buttonLabel,buttonMessages}){
+    const [getMessages, setGetMessages] = useState({})
+    const [getOldMessage, setOldGMessage] = useState({})
+    const [isShow, setIsShow] = useState(false)
+    const [count, setCount] = useState(0);
+    function handleClick(){
+      axios({
+        method: "GET",
+        url:"http://137.184.194.3:5000/"+buttonMessages,
+        headers: {
+          Authorization: 'Bearer ' + props.token 
+        },
+        
+      }).then(response => {
+
+          if(response.status === 200){
+            console.log("SUCCESS", response)
+            setGetMessages(response.data)
+            setIsShow(true)
           }
-        })
+        }).catch(error => {
+          console.log(error)                          
+        })   
+      
+      //setCount(count +1);
     }
+    /*
+    if (getMessages === undefined || getMessages === null)
+    {
+      setGetMessages = ("Processing Request")
+    }*/
+
     return (
       <div>
-        <button onClick = {handleClick1}>
-          {(buttonMessage)}
-        </button>
-      </div>
-      )
+        <Box component="span" sx={{ p: 2}}>
+        <Button variant="outlined" onClick = {handleClick}>
+        {(buttonLabel)}
+      </Button>
+      </Box>
+
+      {isShow ? 
+    (
+      
+      <p>{JSON.stringify(getMessages)}</p>
+    )
+  : (
+    <p><Box component="span" sx={{ p: 2, border: '1px black' }}>Pending Command to be Sent</Box></p>
+  )
   }
-   
+
+      </div>
+    );
+
+};
 
 
 
 
-    function GetButton({message, buttonMessage}){
-        const [count, setCount] = useState(0);
-        function handleClick(){
-            axios.get('http://137.184.194.3:5000/').then(response => {
+
+
+function PostButton({buttonLabel,buttonMessages}){
+  const [getMessages, setGetMessages] = useState({})
+  const [getOldMessage, setOldGMessage] = useState({})
+  const [isShow, setIsShow] = useState(false)
+  const [getInt, setInt] = useState({ })
+  const [count, setCount] = useState(0);
+  function changeCommand(e){
+    setInt(e)
+  }
+  function handleClick(){
+    axios({
+      method: "POST",
+      url:"http://137.184.194.3:5000/"+buttonMessages,
+      headers: {
+        Authorization: 'Bearer ' + props.token 
+      },
+      data: {
+        interface : getInt
+      }
+      
+    }).then(response => {
+
+        if(response.status === 200){
+          console.log("SUCCESS", response)
+          setGetMessages(response.data)
+          setIsShow(true)
+        }
+      }).catch(error => {
+        console.log(error)                          
+      })   
     
-              if(response.status === 200){
-                console.log("SUCCESS", response)
-                setGetMessage(response)
-                setOldGMessage(response)
-              }
-              else{
-                if(setOldGMessage){
-                  setGetMessage(setOldGMessage)
-                }            
-              }         
-            }).catch(error => {
-              console.log(error)                          
-            })   
+    //setCount(count +1);
+  }
+  /*
+  if (getMessages === undefined || getMessages === null)
+  {
+    setGetMessages = ("Processing Request")
+  }*/
+
+  return (
+    <div>
+      <TextField
+          sx={{ p: 2 }}
+          helperText="Example: fa0/1 or gi1/0/1"
+          id="specificInt" label = "Interface" variant="filled" color="secondary" 
+          value={getInt}
+          onChange={changeCommand}
+        />
+      <Box component="span" sx={{ p: 2}}>
+      <Button variant="outlined" onClick = {handleClick}>
+      {(buttonLabel)}
+    </Button>
+    </Box>
+
+    {isShow ? 
+  (
+    
+    <p>{JSON.stringify(getMessages)}</p>
+  )
+: (
+  <p><Box component="span" sx={{ p: 2, border: '1px black' }}>Pending Command to be Sent</Box></p>
+)
+}
+
+    </div>
+  );
+
+};
+
+
+
+
+
+
+
+
+
+    function GetButtonOld({message, buttonMessage}){
+        const [count, setCount] = useState(0);
+        const [user, setUser] = useState({
+          user: 'JT',
+          host: '73.60.76.61',
+          pass: 'Lab123',
+          command: 'sh int desc'
+    })
+        
+        function changeCommand(e){
+          setUser({
+            ...user, command: e.target.value
+          })
+        }
+        function handleClick(){
+          axios({
+            method: "POST",
+            url:"http://137.184.194.3:5000/singlecommand",
+            headers: {
+              Authorization: 'Bearer ' + props.token 
+            },
+            data: {
+              command : user.command
+            }
+          }).then(response => {
+  
+            if(response.status === 200){
+              console.log("SUCCESS", response)
+              setSingleGMessage(response)
+              message = getSingleMessage
+            }
+            else{
+              if(setOldGMessage){
+                setGetMessage(setOldGMessage)
+              }            
+            }         
+          }).catch(error => {
+            console.log(error)                          
+          })   
           setIsShow(true)
           //setCount(count +1);
         }
         if (message === undefined || message === null)
         {
-          message = ("please wait bruh")
+          message = ("Processing Request")
         }
   
         return (
-          //<button>I'm just a button in a human world</button>
-          <div><button onClick = {handleClick}>
+          <div>
+          <TextField
+          sx={{ p: 2 }}
+          id="command" label = "Desired Command" variant="filled" color="secondary" 
+          value={user.command}
+          onChange={changeCommand}
+        />
+          <Button variant="outlined" onClick = {handleClick}>
             {(buttonMessage)}
-    
-    
-          </button>
+
+          </Button>
 
           {isShow ? 
         (
@@ -203,13 +418,15 @@ const Home = () => {
           <p>{message}</p>
         )
       : (
-        <p>uhh i don't think its working</p>
+        <p>Pending Command to be Sent</p>
       )
       }
 
           </div>
         );
     }
+
+    
 };
  
 export default Home;

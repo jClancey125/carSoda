@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState, Component } from 'react';
 import axios from 'axios'
@@ -6,7 +5,7 @@ import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link, BrowserRouter, Redirect}
     from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import Home from './pages';
 import About from './pages/about';
 import Blogs from './pages/blogs';
@@ -19,10 +18,17 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import green from "@material-ui/core/colors/green";
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import Login from './components/Login'
+import Profile from './components/Profile'
+import Header from './components/Header'
+import useToken from './components/useToken'
+import logo from './Images/Logo2_8.png'
+
 
 function App() {
   
-
+  const {token, removeToken, setToken} = useToken();
   const [getMessage, setGetMessage] = useState({})
   const [isShow, setIsShow] = useState(false)
   const useStyles = makeStyles((theme) => ({
@@ -47,7 +53,7 @@ function App() {
   const testUser = {
     name: 'Jean Paul',
     imageUrl: 'https://img.broadtime.com/418456136300:500.webp',
-    imageSize: 420,
+    imageSize: 400,
   };
 
   return (
@@ -56,29 +62,31 @@ function App() {
     <div className="App">
       
       <header className="App-header">
-        
-
-        
-       
-
-        
-
-        
-      
-
-
-
+      <h1> </h1>
       <Router>
-          
       <ButtonAppBar/>
      
+     <Routes>
+         <Route exact path='/'  />
+         <Route path='/about' element={<About />} />
+         <Route path='/contact' element={<Contact />} />
+         <Route path='/blogs' element={<Blogs />} />
+         <Route path='/sign-up' element={<SignUp />} />
+     </Routes>
+        {!token && token!=="" &&token!== undefined?  
+        <SignUp setToken={setToken} />
+        :(
+          <>
             <Routes>
-                <Route exact path='/' exact element={<Home />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/contact' element={<Contact />} />
-                <Route path='/blogs' element={<Blogs />} />
-                <Route path='/sign-up' element={<SignUp />} />
+              <Route exact path="/" element={<Home token={token} setToken={setToken}/>}></Route>
             </Routes>
+          </>
+        )}
+        <Header token={removeToken}/>
+
+      
+          
+      
         </Router>         
       
       </header>
@@ -99,7 +107,7 @@ function App() {
     return (
       //<button>I'm just a button in a human world</button>
       <button onClick = {handleClick}>
-        Click for ARP test ass {String(isShow)}
+        Click for ARP test  {String(isShow)}
 
 
       </button>
@@ -113,9 +121,10 @@ function App() {
     const [example, setExample] = useState("primary");
     const isCustomColor = example === "customColor";
     const isCustomHeight = example === "customHeight";
-    let navigate = useNavigate(); 
+    let navigate = useNavigate();
+
     const routeChange = () =>{ 
-    let path = `/about`; 
+    let path = `/blogs`; 
     navigate(path);}
     
     
@@ -123,62 +132,37 @@ function App() {
 
     return (
       <React.Fragment>
-        <AppBar
-          color={isCustomColor || isCustomHeight ? "primary" : example}
-          className={`${isCustomColor && classes.customColor} ${
-            isCustomHeight && classes.customHeight
-          }`}
-        >
+        <AppBar>
           <router>
-            <route>
-          
-          <Toolbar>
-            
-            <IconButton
-
-              
+            <route>          
+          <Toolbar>           
+            <IconButton              
               edge="start"
               className={classes.menuButton}
               color="inherit"
               aria-label="menu"
-            >
-              
-
-              <img style = {{width: 69, height: 69}} src={testUser.imageUrl}/>
+            >            
+              <img src={logo} alt= "cornerLogo" />
             
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Uhh FrontEnd Test for Automation Thingy
-            </Typography>
-            <Link to="/sign-up">
-            <IconButton color="inherit" onClick={() => setExample("primary")}>
-              Home
               
+            </Typography>
+            <Link to="/about">
+            <IconButton size ='small' color="inherit" onClick={() => setExample("primary")} sx={{ p: 2 }}>
+              Home             
             </IconButton>
             </Link>
             <Link to="/">
-            <IconButton color="inherit" onClick={() => setExample("primary")}>
-              Cisco
+            <IconButton size ='small' color="#default" onClick={() => setExample("primary")} sx={{ p: 2 }}>
+              Cisco             
             </IconButton>
             </Link>
-            <IconButton color="inherit" onClick= {routeChange}>
-              
-              Else
-            </IconButton>
-            <IconButton color="inherit" onClick={() => setExample("transparent")}>
-              4
-            </IconButton>
             <Link to="/blogs">
-            <IconButton color="inherit" onClick={() => setExample("customColor")}>
-              5
+            <IconButton size ='small' color="inherit" onClick={() => setExample("primary")} sx={{ p: 2 }}>
+              Tools
             </IconButton>
-            </Link>
-            <IconButton
-              color="inherit"
-              onClick={() => setExample("customHeight")}
-            >
-              6
-            </IconButton>
+            </Link>   
           </Toolbar>
           </route>
           </router> 
